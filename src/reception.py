@@ -12,7 +12,7 @@ class Reception:
 
     def register_doctor(self,first_name: str, last_name: str, email: str, phone_number: str,role:str, address: str):
         self.new_doctor = Doctor(first_name, last_name, email, phone_number, role, address)
-        self.user_id = self.new_doctor.userId()
+        # self.user_id = self.new_doctor.userId()
         self.new_doctor.message()
 
     def register_patient(self,first_name:str, last_name:str, date_of_birth:str, gender:str,occupation:str,type_of_illness:str, address:str, email: str, phone_number: str):
@@ -32,7 +32,7 @@ class Reception:
 
     def get_patient_info(self,patient_id):
         for patient in self.new_patient.patients:
-            if patient.get_user_id() == patient_id:
+            if patient.userId() == patient_id:
                 return patient.__str__()
 
     def get_doctor_info(self,doctor_id):
