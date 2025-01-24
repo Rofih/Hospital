@@ -1,4 +1,5 @@
 import random
+import re
 
 from src.user import User
 import datetime
@@ -35,3 +36,25 @@ class Patient(User):
     def message(self):
         print("You have been registered successfully")
         print(f'Your id is : {self.userId}')
+
+    @property
+    def check_gender(self):
+        return self.gender
+
+    @check_gender.setter
+    def check_gender(self, gender):
+        if gender.lower() != "male" or gender.lower() != "m" or gender.lower() != "f" or gender.lower() != "female":
+            raise ValueError("Not a Gender")
+        if gender == "":
+            raise ValueError("Empty Gender")
+        self.gender = gender
+    @property
+    def check_date_of_birth(self):
+        return self.date_of_birth
+
+    @check_date_of_birth.setter
+    def check_date_of_birth(self,date_of_birth):
+        status = re.findall("[a-zA-Z]", date_of_birth)
+        if status:
+            raise ValueError("Not a Date")
+        self.date_of_birth = date_of_birth
